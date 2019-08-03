@@ -28,7 +28,7 @@
     .map {height:70%}
     #map {position:relative;height:600px;}
     .leaflet-popup-content {font-size: medium;}
-    .form-group{width:250px;margin-bottom:0;}
+    .form-group{width:300px;margin-bottom:0;}
     .form-control{resize:none;}
     .text-muted{font-size:smaller;}
     hr {margin: 10px 0;}
@@ -55,6 +55,7 @@
     // 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     // }).addTo(map);
 
+    //Add a Satellite basemap
     var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     }).addTo(map);
@@ -64,6 +65,7 @@
       drawCircle: false,
       showPopup: false,
       follow:true,
+      enableHighAccuracy: true,
     };
 
     //Add Location
@@ -124,7 +126,7 @@
       lat = e.latlng.lat;
       lng = e.latlng.lng;
 
-      var form = '<div id="formdiv"><form role="form" id="projectform"><div class="form-group"><div class="form-group"><label for="description" class="requiredField">GPS Collection Form</label><textarea class="form-control" rows="3" id="descrip" placeholder="Text input..."></textarea></div><em class="text-muted">Click submit to add a point at this location.</em><div id="formHelp"></div><hr /><button type="submit" id="submit" class="btn btn-default btn-sm">Submit</button></form></div>';
+      var form = '<div id="formdiv"> <form role="form" action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdsRAXWgQ2mU-C6utz4196tdLo_FtIxoERrAQpuOtl9YcFYTg/formResponse" target="_self" method="POST" id="mG61Hd"> <div class="form-group"> <h6><b>Thông báo tình trạng tấm BTXM</b></h6> <div class="form-group"> <input class="form-check-input" type="radio" name="entry.427826228" value="Nứt vỡ" checked> <label>Nứt vỡ</label> <input class="form-check-input" type="radio" name="entry.427826228" value="Phụt bùn"> <label>Phụt bùn</label> <input class="form-check-input" type="radio" name="entry.427826228" value="Sụt lún"> <label>Sụt lún</label> <br/> <input class="form-check-input" type="radio" name="entry.427826228" value="Đã xử lý xong"> <label>Đã xử lý xong</label> </div> <div> <label for="description" class="requiredField" name="entry.1494342273">Mô tả bằng hình ảnh</label> <input type="file" name="pic" accept="image/*"> </div> <div class="form-group"> <label for="description" class="requiredField" name="entry.756685496">Mô tả bằng văn bản</label> <textarea class="form-control" rows="1" id="descrip" placeholder="Kích thước (DxR)..."></textarea> </div> <em class="text-muted">Click submit to add a point at this location.</em> <div id="formHelp"></div> <hr /> </div> <button type="submit" id="submit" class="btn btn-default btn-sm">Submit</button> </form> </div>';
 
       if (e.accuracy) {
         var radius = (e.accuracy / 2) * 3.28084;
